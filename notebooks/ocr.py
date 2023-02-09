@@ -17,11 +17,7 @@ class OCR():
 
     def load_images_from_folder(self):
         images = []
-<<<<<<< HEAD
         for filename in sorted(os.listdir(self.image_folder)):
-=======
-        for filename in os.listdir(self.image_folder):
->>>>>>> d9d483d80e475295f8a15f416fd9fe7f36e9e46f
             # print("IMAGES:",self.image_folder,filename)
             img = cv2.imread(os.path.join(self.image_folder,filename))
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
@@ -50,10 +46,10 @@ class OCR():
         text_reader = easyocr.Reader(['en']) #Initialzing the ocr
         return text_reader
 
-    def easyocr_model_works(self,visualization=True):
+    def easyocr_model_works(self,batch_size=1,visualization=True):
         results=[]
         for i in range(len(self.images)):
-            results.append(self.text_reader.readtext(self.images[i] ))
+            results.append(self.text_reader.readtext(self.images[i],batch_size=batch_size ))
             # for (bbox, text, prob) in results[i]:
             #     # print(text)
             if visualization:
